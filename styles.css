@@ -1,0 +1,105 @@
+/* Root styles */
+
+:root {
+  --background-main: #2D3142;
+  --dark-grey: #4F5D75;
+  --light-grey: #BFC0C0;
+  --orange: #EF8354;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: var(--background-main);
+  color: #FFFFFF;
+  font-family: 'Baloo Tamma 2', cursive;
+}
+
+form {
+  margin: 0px;
+  padding: 20px;
+}
+
+/* Header styles */
+
+header h1 {
+  text-align: center;
+  font-size: 3rem;
+  padding: 20px;
+}
+
+form {
+  text-align: center;
+}
+
+#search-bar {
+  text-align: center;
+  background-color: var(--dark-grey);
+  border: 0px;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  height: 50px;
+  outline: 0;
+  width: 300px;
+}
+
+#submit-btn {
+  border: 0px;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  background-color: var(--orange);
+  color: white;
+  font-size: 1.5rem;
+}
+
+
+/* Tile Grid Styles */
+
+.tile-container {
+  padding: 50px;
+}
+
+.tile-cities {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.tile-item {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+  list-style-type: none;
+  text-align: center;
+}
+
+
+/* Inner tile element styles */
+
+.city-name {
+  font-size: 1.5rem;
+  color: var(--orange);
+  text-align: center;
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+
+.tile-item img {
+  height: 100px;
+  width: 100px;
+}
+
+.city-temp {
+  color: var(--dark-grey);
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+

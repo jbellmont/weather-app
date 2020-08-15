@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Weather App</title>
+  <meta name="description" content="Javascript Weather App">
+  <meta name="author" content="Jack Bellmont">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b4895fab6a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Weather app <i class="far fa-sun"></i></h1>
+  </header>
+
+  <!-- Search bar section -->
+  <section>
+    <form>
+      <input type="text" id="search-bar" placeholder="Search for a city" value="">
+      <button type="button" id='submit-btn'>
+        <i class="fas fa-plus"></i>
+      </button>
+    </form>
+  </section>
+
+  <!-- City tile grid section-->
+  <section class="tile-container">
+    <ul class="tile-cities">
+    </ul>
+  </section>
+
+
+  <script src="script.js"></script>
+  
+</body>
+
+</html>
