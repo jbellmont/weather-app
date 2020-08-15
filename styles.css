@@ -17,6 +17,7 @@ body {
   background-color: var(--background-main);
   color: #FFFFFF;
   font-family: 'Baloo Tamma 2', cursive;
+  background-size: cover;
 }
 
 form {
@@ -26,10 +27,22 @@ form {
 
 /* Header styles */
 
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  transition: height 0.5s;
+}
+
+header-shrink {
+  height: 50vh;
+}
+
 header h1 {
   text-align: center;
-  font-size: 3rem;
-  padding: 20px;
+  font-size: 4rem;
 }
 
 form {
@@ -38,14 +51,15 @@ form {
 
 #search-bar {
   text-align: center;
-  background-color: var(--dark-grey);
+  background-color: white;
   border: 0px;
   border-radius: 5px;
-  color: white;
+  color: var(--dark-grey);
   font-size: 1.5rem;
   height: 50px;
   outline: 0;
   width: 300px;
+  box-shadow: black 2px 2px;
 }
 
 #submit-btn {
@@ -56,21 +70,34 @@ form {
   background-color: var(--orange);
   color: white;
   font-size: 1.5rem;
+  box-shadow: black 1px 1px;
+  outline: none;
+}
+
+#submit-btn i {
+  display: block;
+  transition: ease-in 0.2s;
+}
+
+#submit-btn:hover i {
+  transform: rotate(45deg);
 }
 
 
 /* Tile Grid Styles */
 
 .tile-container {
-  padding: 50px;
+  padding: 0px 50px 50px 50px;
+  height: 50vh;
+  display: none;
 }
 
 .tile-cities {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
 .tile-item {
@@ -79,10 +106,15 @@ form {
   color: black;
   list-style-type: none;
   text-align: center;
+  box-shadow: black 5px 5px;
 }
 
 
 /* Inner tile element styles */
+
+.city-name-and-button-container {
+  display: flex;
+}
 
 .city-name {
   font-size: 1.5rem;
@@ -103,3 +135,11 @@ form {
   padding-bottom: 10px;
 }
 
+.close-btn {
+  background-color: red;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+}
