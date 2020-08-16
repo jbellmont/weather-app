@@ -160,6 +160,5 @@ form {
 
 .remove-tile {
   display: block;
-  background-color: red;
   cursor: pointer;
 }

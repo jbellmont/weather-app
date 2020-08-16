@@ -46,7 +46,7 @@ function searchCityAddTile() {
 
           <h2 class="city-temp">${Math.round(data.main.temp)}°C</h2>
 
-          <span class="remove-tile">x</span>
+          <span class="remove-tile">&#10006;</span>
           `;
         
         // Add city to currentCities, as a record of what's active. This will help with checking if a city has already been added
