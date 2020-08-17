@@ -54,9 +54,9 @@ function searchCityAddTile() {
         })
       .catch(() => {
         errorMessage.innerText = "Invalid city name";
-        setTimeout(function() {
-          errorMessage.innerText = "";
-        }, 2000)
+        // setTimeout(function() {
+        //   errorMessage.innerText = "";
+        // }, 2000)
       })
   }
 }
@@ -72,10 +72,16 @@ document.addEventListener('click', function(event) {
     let currentTile = event.target.parentNode;
     let currentTileCityName = currentTile.querySelector('h1').innerText;
     currentCities.splice(currentCities.indexOf(currentTileCityName), 1);
-    currentTile.parentNode.removeChild(currentTile);
-
-    if (countOfListItems.length === 0) {
-      headerContainer.style.height = '100vh';
-    }
+    currentTile.style.opacity = 0;
+    currentTile.addEventListener('transitionend', function() {
+      // After clicking on close button, tile will fade out. After fade out, delete the tile and run the check
+      currentTile.parentNode.removeChild(currentTile);
+      if (countOfListItems.length === 0) {
+        tileContainer.style.display = 'none';
+        tileContainer.style.height = '0vh';
+        headerContainer.style.height = '100vh';
+        console.log("???"); 
+      }
+    })
 	}
 }, false);
