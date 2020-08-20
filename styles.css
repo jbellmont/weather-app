@@ -12,9 +12,15 @@
   padding: 0;
 }
 
+html {
+  background: rgb(45,49,66);
+  background: linear-gradient(180deg, rgba(45,49,66,1) 0%, rgba(79,93,117,1) 100%);  
+  background-size: cover;
+  height: 100%;
+}
+
 body {
   box-sizing: border-box;
-  background-color: var(--background-main);
   color: #FFFFFF;
   font-family: 'Baloo Tamma 2', cursive;
   background-size: cover;
@@ -43,6 +49,7 @@ header-shrink {
 header h1 {
   text-align: center;
   font-size: 4rem;
+  text-shadow: #1b1b1b 0px 0px 10px;
 }
 
 form {
@@ -78,23 +85,24 @@ form {
   box-shadow: black 1px 1px;
   outline: none;
   cursor: pointer;
-}
-
-#submit-btn i {
-  display: block;
   transition: ease-in 0.2s;
+  font-weight: 900;
 }
 
-#submit-btn:hover i {
+#submit-btn:hover {
   transform: rotate(45deg);
+
 }
 
-#error-message {
+#help-info {
   display: block;
   height: 50px;
   color: #FFFFFF;
-  transition: color 0.5s;
+  transition: opacity 0.5s;
+  cursor: default;
 }
+
+
 
 /* Tile Grid Styles */
 
@@ -110,12 +118,14 @@ form {
   grid-auto-flow: column;
   row-gap: 20px;
   column-gap: 20px;
+  justify-content: center;
 }
 
 .tile-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 250px;
   background-color: white;
   border-radius: 20px;
   color: black;
@@ -123,6 +133,7 @@ form {
   text-align: center;
   box-shadow: black 5px 5px 5px;
   transition: opacity ease 0.15s;
+  /* position: absolute; */
 
   /* animation for when the tile is created */
   animation-name: fade-in;
@@ -130,6 +141,7 @@ form {
   animation-iteration-count: 0.15s;
   animation-timing-function: ease;
 }
+
 
 @keyframes fade-in {
   0% {opacity: 0;}
@@ -163,7 +175,7 @@ form {
   width: 100px;
 }
 
-.city-temp {
+.city-temp, .humidity-metric, .wind-speed-metric {
   color: var(--dark-grey);
   margin-top: 0;
   padding-bottom: 10px;
@@ -172,4 +184,11 @@ form {
 .remove-tile {
   display: block;
   cursor: pointer;
+  color: var(--light-grey);
+  transition: ease-in 0.2s;
+}
+
+.remove-tile:hover {
+  transform: scale(1.5);
+  color: #EF8354;
 }

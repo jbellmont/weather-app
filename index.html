@@ -3,8 +3,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Weather App</title>
+  <title>Javascript Weather App</title>
   <meta name="description" content="Javascript Weather App">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Jack Bellmont">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500&display=swap" rel="stylesheet">
@@ -17,11 +18,11 @@
     <h1>Weather app <i class="far fa-sun"></i></h1>
     <form autocomplete="off">
       <input type="text" id="search-bar" placeholder="Search for a city" value="">
-      <button type="button" id='submit-btn'>
-        <i class="fas fa-plus"></i>
+      <button type="submit" id='submit-btn'>
+        &#10005;
       </button>
     </form>
-    <span id="error-message"></span>
+    <span id="help-info">Add up to four cities to compare their weather</span>
   </header>
 
   <!-- City tile grid section-->

@@ -5,41 +5,48 @@ const headerContainer = document.getElementById('header-contents'); // H1 + Sear
 const tileContainer = document.querySelector('.tile-container'); // Tile container
 let tilesUl = document.querySelector('.tile-cities'); // List of tiles
 let countOfListItems = tilesUl.getElementsByTagName("li"); // Count of number of tiles, used to enforce of a maximum of 4
-let errorMessage = document.getElementById("error-message");
+let helpInfo = document.getElementById("help-info");
 let removeButtons = document.getElementsByClassName('remove-tile');
 let currentCities = [];
 
-function searchCityAddTile() {
-  // Makes a GET request to Openweather's API
+function searchCityAddTile(e) {
+  // Stop submitting and refreshing on 'Enter' keypress
+  e.preventDefault();
+
+  // Fade out Helper Text
+  helpInfo.style.opacity = 0;
+
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&appid=${key}&units=metric`;
   
   // Checks if there are 4 tiles visible
-  
   if (countOfListItems.length === 4) {
-    errorMessage.style.color = "#FFFFFF";
-    errorMessage.innerText = "Too many cities added. Maximum of four";
-
+    helpInfo.style.opacity = 1;
+    helpInfo.innerText = "Too many cities added. Maximum of four";
+    setTimeout(() => helpInfo.style.opacity = 0, 3000);
   } else {
+      // Makes a GET request to Openweather's API
       fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log(data);
         if (currentCities.includes(`${data.name} ${data.sys.country}`)) {
-          errorMessage.style.color = "#FFFFFF";
-          return errorMessage.innerText = "City already added. Please choose another city";
+          helpInfo.style.opacity = 1;
+          helpInfo.innerText = "City already added. Please choose another city";
+          return setTimeout(() => helpInfo.style.opacity = 0, 3000);
         } else {
-          console.log('fucked');
+          console.log('change this please');
         }
 
         // Shrink the Header
         headerContainer.style.height = '50vh';
         tileContainer.style.display = 'block';
 
-        // Create a tile li element
+        // Create a the city tile li element
         let cityTileLi = document.createElement("LI");
         cityTileLi.classList.add('tile-item');
         tilesUl.appendChild(cityTileLi); // append to ul
-        cityTileLi.innerHTML = `
+        cityTileLi.innerHTML = 
+          `
           <h1 class="city-name">${data.name} <sup class="sup">${data.sys.country}</sup></h1>
 
           <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">
@@ -48,15 +55,12 @@ function searchCityAddTile() {
 
           <span class="remove-tile">&#10006;</span>
           `;
-        
+
         // Add city to currentCities, as a record of what's active. This will help with checking if a city has already been added
         currentCities.push(`${data.name} ${data.sys.country}`);
         })
       .catch(() => {
-        errorMessage.innerText = "Invalid city name";
-        // setTimeout(function() {
-        //   errorMessage.innerText = "";
-        // }, 2000)
+        helpInfo.innerText = "Invalid city name";
       })
   }
 }
@@ -80,7 +84,10 @@ document.addEventListener('click', function(event) {
         tileContainer.style.display = 'none';
         tileContainer.style.height = '0vh';
         headerContainer.style.height = '100vh';
-        console.log("???"); 
+        setTimeout(() => {
+          helpInfo.style.opacity = 1;
+          helpInfo.innerText = "Add up to four cities to compare their weather";
+        }, 250);
       }
     })
 	}
