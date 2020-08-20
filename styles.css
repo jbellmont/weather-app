@@ -52,6 +52,10 @@ header h1 {
   text-shadow: #1b1b1b 0px 0px 10px;
 }
 
+#app-title {
+  cursor: pointer;
+}
+
 form {
   text-align: center;
 }

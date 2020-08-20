@@ -3,11 +3,37 @@ const searchBar = document.getElementById('search-bar'); // Search bar component
 const submitButton = document.getElementById('submit-btn'); // Submit button component
 const headerContainer = document.getElementById('header-contents'); // H1 + Search Bar container
 const tileContainer = document.querySelector('.tile-container'); // Tile container
+const appTitle = document.querySelector('#app-title');
 let tilesUl = document.querySelector('.tile-cities'); // List of tiles
 let countOfListItems = tilesUl.getElementsByTagName("li"); // Count of number of tiles, used to enforce of a maximum of 4
 let helpInfo = document.getElementById("help-info");
 let removeButtons = document.getElementsByClassName('remove-tile');
 let currentCities = [];
+
+
+// Click on Weather App title to reset
+appTitle.addEventListener('click', () => {
+
+  // clear City array
+  const cityArrayLength = currentCities.length
+  for (let i = 0; i < cityArrayLength; i++) {
+    currentCities.pop();
+  }
+
+  // Delete all li items
+  document.querySelectorAll('li').forEach(tile => {
+    tile.parentNode.removeChild(tile);
+  })
+
+  tileContainer.style.display = 'none';
+  tileContainer.style.height = '0vh';
+  headerContainer.style.height = '100vh';
+  setTimeout(() => {
+    helpInfo.style.opacity = 1;
+    helpInfo.innerText = "Add up to four cities to compare their weather";
+  }, 250);
+})
+
 
 function searchCityAddTile(e) {
   // Stop submitting and refreshing on 'Enter' keypress
