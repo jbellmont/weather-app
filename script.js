@@ -7,8 +7,18 @@ const appTitle = document.querySelector('#app-title');
 let tilesUl = document.querySelector('.tile-cities'); // List of tiles
 let countOfListItems = tilesUl.getElementsByTagName("li"); // Count of number of tiles, used to enforce of a maximum of 4
 let helpInfo = document.getElementById("help-info");
+let helpInfoDelay;
 let removeButtons = document.getElementsByClassName('remove-tile');
 let currentCities = [];
+
+
+// Fade in helper info message, then fade out after 3 seconds
+function fadeInOutHelpInfo(message) {
+  clearInterval(helpInfoDelay);
+  helpInfo.style.opacity = 1;
+  helpInfo.innerText = String(message);
+  helpInfoDelay = setTimeout(() => helpInfo.style.opacity = 0, 3000);
+}
 
 
 // Click on Weather App title to reset
@@ -43,24 +53,21 @@ function searchCityAddTile(e) {
   helpInfo.style.opacity = 0;
 
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&appid=${key}&units=metric`;
-  
+
+  // Reset the search bar value
+  searchBar.value = '';
+
   // Checks if there are 4 tiles visible
   if (countOfListItems.length === 4) {
-    helpInfo.style.opacity = 1;
-    helpInfo.innerText = "Too many cities added. Maximum of four";
-    setTimeout(() => helpInfo.style.opacity = 0, 3000);
+    fadeInOutHelpInfo("Too many cities added. Maximum of four");
   } else {
-      // Makes a GET request to Openweather's API
+      // Makes a GET request using Openweather's API
       fetch(url)
       .then(response => response.json())
       .then(data => {
         console.log(data);
         if (currentCities.includes(`${data.name} ${data.sys.country}`)) {
-          helpInfo.style.opacity = 1;
-          helpInfo.innerText = "City already added. Please choose another city";
-          return setTimeout(() => helpInfo.style.opacity = 0, 3000);
-        } else {
-          console.log('change this please');
+          return fadeInOutHelpInfo("City already added. Please choose another city");
         }
 
         // Shrink the Header
@@ -86,7 +93,7 @@ function searchCityAddTile(e) {
         currentCities.push(`${data.name} ${data.sys.country}`);
         })
       .catch(() => {
-        helpInfo.innerText = "Invalid city name";
+        fadeInOutHelpInfo("Invalid city name");
       })
   }
 }
